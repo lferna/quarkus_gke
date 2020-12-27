@@ -1,0 +1,13 @@
+  
+kind: Service
+apiVersion: v1
+metadata:
+  name: quarkus-gke
+spec:
+  selector:
+     run: quarkus-gke
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
+  type: LoadBalancer
