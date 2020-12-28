@@ -2,8 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    run: quarkus-ms-demo
-  name: quarkus-ms-demo
+    run: quarkus-gke
+  name: quarkus-gke
 spec:
   replicas: 2
   selector:
@@ -15,7 +15,17 @@ spec:
         run: quarkus-gke
     spec:
       containers:
-      - image: gcr.io/alpine-comfort-268715/qquarkus-gke:latest
+      - image: gcr.io/capgemini-gcp/quarkus-gke:latest
         name: quarkus-gke
+        readinessProbe:
+          httpGet:
+            port: 8080
+            path: /health
+          initialDelaySeconds: 1
+        livenessProbe:
+          httpGet:
+            port: 8080
+            path: /health
+          initialDelaySeconds: 1        
         ports:
         - containerPort: 8080
