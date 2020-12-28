@@ -20,12 +20,12 @@ spec:
         readinessProbe:
           httpGet:
             port: 8080
-            path: /health
+            path: /demo/health
           initialDelaySeconds: 10
         livenessProbe:
           httpGet:
             port: 8080
-            path: /health
+            path: /demo/health
           initialDelaySeconds: 10       
         ports:
         - containerPort: 8080
