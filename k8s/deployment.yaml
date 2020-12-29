@@ -21,11 +21,11 @@ spec:
           httpGet:
             port: 8080
             path: /demo/health
-          initialDelaySeconds: 10
+          initialDelaySeconds: 1
         livenessProbe:
           httpGet:
             port: 8080
             path: /demo/health
-          initialDelaySeconds: 10       
+          initialDelaySeconds: 1    
         ports:
         - containerPort: 8080
