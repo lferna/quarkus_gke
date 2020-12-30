@@ -5,7 +5,7 @@ metadata:
     run: quarkus-gke
   name: quarkus-gke
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       run: quarkus-gke
@@ -17,15 +17,22 @@ spec:
       containers:
       - image: gcr.io/capgemini-gcp/quarkus-gke:latest
         name: quarkus-gke
+        resources:
+          requests:
+           memory: "10Mi"
+           cpu: "10m"
+          limits:
+           memory: "20Mi"
+           cpu: "20m"
         readinessProbe:
           httpGet:
             port: 8080
             path: /demo/health
-          initialDelaySeconds: 1
+          initialDelaySeconds: 10
         livenessProbe:
           httpGet:
             port: 8080
             path: /demo/health
-          initialDelaySeconds: 1    
+          initialDelaySeconds: 10       
         ports:
         - containerPort: 8080
